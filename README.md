@@ -1,2 +1,2 @@
 # llm4regression
-LLMs for Regression
+LLMs Can Do Regression
