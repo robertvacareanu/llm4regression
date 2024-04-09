@@ -1,0 +1,11 @@
+The task is to provide your best estimate for "Output". Please provide that and only that, without any additional text.
+
+
+Feature 0: -2.06
+Output: -81.93
+
+Feature 0: -0.64
+Output: -25.33
+
+Feature 0: 1.62
+Output:
