@@ -51,6 +51,8 @@ name_to_short = {
 
     'gpt4-turbo-20240409': 'GPT-4 (20240409)',
 
+    'mixtral8x22B'    : 'Mixtral 8x22B',
+
     'gpt4_with_prefixinstr': 'GPT 4 (+ Prefix Instr)',
 
 
@@ -121,6 +123,7 @@ name_to_group = {
     'gpt4-turbo-20240409'  : 'LLM',
     'gpt4_with_prefixinstr': 'LLM',
 
+    'mixtral8x22B'    : 'LLM',
 
     'lr'                : 'Traditional Supervised Model',
     'ridge'             : 'Traditional Supervised Model',
