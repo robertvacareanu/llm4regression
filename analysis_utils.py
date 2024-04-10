@@ -49,6 +49,8 @@ name_to_short = {
 
     'stripedhyena-nous-7b': 'Striped Hyena 7B',
 
+    'gpt4-turbo-20240409': 'GPT-4 (20240409)',
+
     'gpt4_with_prefixinstr': 'GPT 4 (+ Prefix Instr)',
 
 
@@ -115,6 +117,8 @@ name_to_group = {
     'rwkv-v4-14b'         : 'LLM',
     'stripedhyena-nous-7b': 'LLM',
     
+
+    'gpt4-turbo-20240409'  : 'LLM',
     'gpt4_with_prefixinstr': 'LLM',
 
 
