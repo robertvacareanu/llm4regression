@@ -8,7 +8,7 @@ hatching_patterns = ['/', '\\', '|', '-', '+', 'x', 'o', 'O', '.', '*']
 name_to_short = {
     'chatgpt'        : 'Chat GPT',
     'codellama70b'   : 'Code Llama 70B',
-    'gpt4'           : 'GPT-4',
+    'gpt4'           : 'GPT-4 (original)',
     'gpt4-turbo'     : 'GPT-4',
     'llama270bchathf': 'Llama2 70B Chat HF',
     'mixtral7B'      : 'Mistral 7B',
