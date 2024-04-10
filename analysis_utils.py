@@ -50,8 +50,8 @@ name_to_short = {
     'stripedhyena-nous-7b': 'Striped Hyena 7B',
 
     'gpt4-turbo-20240409': 'GPT-4 (20240409)',
-
     'mixtral8x22B'    : 'Mixtral 8x22B',
+    'mixtral7Bv2'     : 'Mistral 7Bv2',
 
     'gpt4_with_prefixinstr': 'GPT 4 (+ Prefix Instr)',
 
@@ -124,6 +124,7 @@ name_to_group = {
     'gpt4_with_prefixinstr': 'LLM',
 
     'mixtral8x22B'    : 'LLM',
+    'mixtral7Bv2'     : 'LLM',
 
     'lr'                : 'Traditional Supervised Model',
     'ridge'             : 'Traditional Supervised Model',
