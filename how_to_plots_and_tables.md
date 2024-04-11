@@ -418,3 +418,59 @@ The output should look like the table below:
 | Linear Regression        | linear    | linear    | linear    | linear    | linear    | log             | log             |
 | Linear Regression + Poly | sqrt      | log       | log       | linear    | log       | log             | log             |
 | Random Forest            | linear    | sqrt      | linear    | sqrt      | sqrt      | sqrt            | linear          |
+
+## How to get an average rank table like in the `README.md`
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# Read data
+df = pd.read_json('data/outputs/lr_nlr.json')
+
+# Store each processed dataframe here
+results = []
+
+# Iterate over groups of datasets
+for (datasets, name) in [
+    # Linear Regression Datasets
+    (['regression_ni11', 'regression_ni12', 'regression_ni13', 'regression_ni22', 'regression_ni23', 'regression_ni33', ], 'Linear'),
+    # Original Datasets - Random non-linear regression datasets that were written by us
+    (['original1', 'original2', 'original3', 'original4', 'original5', ], 'Original'),
+    # Friedman Datasets - The benchmarking datasets proposed by Friedman
+    (['friedman1', 'friedman2', 'friedman3', ], 'Friedman'),
+    # NN Datasets - Random datasets created using a randomly initialized neural network
+    (['simple_random_nn1', 'transformer1', ], 'NN'),
+    # Non-Linear Regression Datasets
+    (['friedman1', 'friedman2', 'friedman3', 'original1', 'original2', 'original3', 'original4', 'original5', 'simple_random_nn1', 'transformer1', ], 'Non-Linear'),
+    # Overall
+    (['regression_ni11', 'regression_ni12', 'regression_ni13', 'regression_ni22', 'regression_ni23', 'regression_ni33', 'friedman1', 'friedman2', 'friedman3', 'original1', 'original2', 'original3', 'original4', 'original5', 'simple_random_nn1', 'transformer1', ], 'Overall'),
+]:
+    cdf = df[df['dataset'].isin(datasets)]
+    current_data = []
+    # Calculate ranks
+    for (key, group) in cdf.groupby(by=['dataset', 'model']).agg({'l1': 'mean'}).reset_index().groupby(by=['dataset']):
+        for idx, line in enumerate(group.sort_values(by=['l1']).to_dict('records')):
+            current_data.append({
+                'dataset': line['dataset'].replace('Regression ', ''),
+                'model': line['model'],
+                'rank': int(idx + 1),
+            })
+    cdf = pd.DataFrame(current_data)
+    cdf = cdf.groupby(by=['model']).agg({'rank': 'mean'}).rename(columns={'rank': name})
+    results.append(cdf)
+
+result = pd.concat(results, axis=1)
+display(result.loc[['Claude 3 Opus', 'GPT-4', 'Mixtral 8x22B', 'DBRX', 'Gradient Boosting', 'Random Forest', 'Linear Regression']].round(2))
+```
+
+Running the above code will result in an output similar to the one below 
+
+| Model             | Linear | Original | Friedman | NN   | Non-Linear | Overall |
+| ----------------- | ------ | -------- | -------- | ---- | ---------- | ------- |
+| Claude 3 Opus     | 7.67   | 7.2      | 4.00     | 17.0 | 8.2        | 8.00    |
+| GPT-4             | 12.83  | 11.4     | 11.33    | 22.5 | 13.6       | 13.31   |
+| Mixtral 8x22B     | 20.50  | 12.4     | 16.67    | 23.5 | 15.9       | 17.62   |
+| DBRX              | 18.67  | 15.0     | 15.67    | 25.0 | 17.2       | 17.75   |
+| Gradient Boosting | 24.83  | 9.6      | 8.67     | 8.5  | 9.1        | 15.00   |
+| Random Forest     | 31.50  | 17.2     | 14.33    | 17.0 | 16.3       | 22.00   |
+| Linear Regression | 1.17   | 25.8     | 16.00    | 10.0 | 19.7       | 12.75   |
