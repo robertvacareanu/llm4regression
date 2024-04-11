@@ -1,3 +1,8 @@
+"""
+OpenAI
+
+python -m src.experiments.regression_performance.regression_performance_openai
+"""
 from src.regressors.llm_regressor import *
 from src.dataset_utils import get_dataset
 from src.score_utils import scores
@@ -12,14 +17,11 @@ from pathlib import Path
 with open('api.key') as fin:
     os.environ['OPENAI_API_KEY'] = fin.readlines()[0].strip()
 
-
-llm = ChatOpenAI(model_name="gpt-4-0125-preview", temperature=0)
-model_name = 'gpt4_0125_preview'
     
 # llm = ChatOpenAI(model_name="gpt-4-turbo-2024-04-09", temperature=0)
 # model_name = 'gpt4-turbo-20240409'
-# llm = ChatOpenAI(model_name="gpt-4-0125-preview", temperature=0)
-# model_name = 'gpt4-turbo'    
+llm = ChatOpenAI(model_name="gpt-4-0125-preview", temperature=0)
+model_name = 'gpt4-turbo'    
 # llm = ChatOpenAI(model_name="gpt-3.5-turbo-1106", temperature=0)
 # model_name = 'chatgpt'
 # llm = OpenAI(model_name="davinci-002", temperature=0)
