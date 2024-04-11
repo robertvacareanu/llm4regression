@@ -16,7 +16,7 @@ We describe them in greater detail below.
 
 
 ### LLM
-We use over 20 large language models (LLMs), either through pay-per-token services or deployed locally.
+We use over 20 large language models (LLMs), such as GPT-4, Claude 3, or DBRX, either through pay-per-token services or deployed locally. All the LLMs used are available in the table below.
 
 | LLM                              | How was used                                      | Additional details                                                              |
 | -------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -39,6 +39,7 @@ We use over 20 large language models (LLMs), either through pay-per-token servic
 | DBRX                             | Fireworks                                         | `accounts/fireworks/models/dbrx-instruct`                                       |
 | Mixtral Mixture of Experts 8x22B | Fireworks                                         | `accounts/fireworks/models/mixtral-8x22b`                                       |
 | Mixtral Mixture of Experts 8x7B  | DeepInfra                                         | `mistralai/Mixtral-8x7B-Instruct-v0.1`                                          |
+| Mistral 7B v2                    | DeepInfra                                         | `mistralai/Mistral-7B-Instruct-v0.2`                                            |
 | Mistral 7B                       | DeepInfra                                         | `mistralai/Mistral-7B-Instruct-v0.1`                                            |
 | Llama 2 70B Chat                 | DeepInfra                                         | `meta-llama/Llama-2-70b-chat-hf`                                                |
 | Code Llama 2 70B Instruct        | DeepInfra                                         | `codellama/CodeLlama-70b-Instruct-hf`                                           |
@@ -49,10 +50,11 @@ We use over 20 large language models (LLMs), either through pay-per-token servic
 | RWKV v4 14B                      | Locally with Huggingface (`AutoModelForCausalLM`) | `rwkv-v4-14b`                                                                   |
 
 
-
 ### Traditional Supervised Methods
-We use traditional supervised methods typically used for regression. We use models found in sklearn. We include in additional details the model name and any default parameter changes.
-We used `<..>` for some parameters that are omitted for brevity (e.g., random state)
+We use over 20 traditional supervised methods typically used for regression (e.g., Gradient Boosting). We use models found in sklearn. We include in additional details the model name and any default parameter changes.
+We used `<..>` for some parameters that are omitted for brevity (e.g., random state).
+
+
 | Model Name               | Additional Details                                                                                                    |
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | Linear Regression        | `LinearRegression`                                                                                                    |
@@ -78,6 +80,8 @@ We used `<..>` for some parameters that are omitted for brevity (e.g., random st
 | KNN v3                   | `KNeighborsRegressor(n_neighbors=3, weights='distance')`                                                              |
 | KNN v4                   | `KNeighborsRegressor(n_neighbors=1, weights='distance')`                                                              |
 | KNN v5                   | `KNeighborsRegressor(n_neighbors=n_neighbors, weights='distance')` (`n_neigbors` depends on the number of datapoints) |
+
+
 
 ### Unsupervised Heuristics
 We use heuristic-inspired baselines.
@@ -191,9 +195,9 @@ We found:
 (2) Falcon performance is also strong, albeit not to the level of the newer models. Nevertheless, Falcon outperforms MLP regressors on `Original 1`; 
 (3) The performance of models does not significantly changes if they have access to the name of the dataset they will be tested on.
 
-## Result data
+## Data
 
-The results can be found in `data/outputs`. Please see `how_to_plots.md` for examples on how to interact with it.
+The resulting data for all models can be found in `data/outputs`. Please see `how_to_plots_and_tables.md` for examples on how to interact with it.
 
 ## How to
 
@@ -244,6 +248,8 @@ Output: 67.84
 Feature 0: 41.7
 Output:
 ```
+
+Additionally, there is an example in `prompt.txt`.
 
 ### How to re-run some experiments
 Please see the folders in `src/experiments`. Each folder contains a `README.md` file with additional explanations, including the reasoning behind the experiment.
