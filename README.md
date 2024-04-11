@@ -13,7 +13,7 @@ We describe them in greater detail below.
 
 ### LLM
 We use over 10 large language models (LLMs), either through pay-per-token services or deployed locally.
-We also show their rank, as compared with *all* other models. The use 🥇 for the best LLM, 🥈 for the second best, and 🥉 for the third best. 
+We also show their rank, as compared with *all* other models. We use 🥇 for the best performing LLM, 🥈 for the second best, and 🥉 for the third best. 
 
 Note: 🏆 Claude 3 Opus 🏆 is the best model **overall** on non-linear datasets, outperforming all other models (LLMs or supervised). It ranks second place overall (across all datasets), only behind `Linear Regression + Poly`.
 
@@ -119,10 +119,70 @@ Selected LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) c
 ### Adaptation
 
 
+## Result data
+
+The results can be found in `data/outputs`. Please see `how_to_plots.md` for examples on how to interact with it.
+
 ## How to
 
 ### How to add a new dataset?
-Please check `hot_to_dataset.md`
+Please check `hot_to_dataset.md`.
 
 ### How to add a new model?
-Please check `hot_to_model.md`
+Please check `hot_to_model.md`.
+
+### How to recreate some of the plots/tables
+Please check `how_to_plots_and_tables`.
+
+There are examples on how to interact with the data there.
+
+### How to see how a prompt looks like
+Please run the following command, inside project.
+
+First, run `python`, then:
+
+```python
+from src.dataset_utils import get_dataset
+from src.regressors.prompts import construct_few_shot_prompt
+
+# Get the dataset
+((x_train, x_test, y_train, y_test), y_fn) = get_dataset('original1')(max_train=2, max_test=1, noise=0, random_state=1, round=True, round_value=2)
+
+# The instruction prefix we used
+instr_prefix='The task is to provide your best estimate for "Output". Please provide that and only that, without any additional text.\n\n\n\n\n'
+
+fspt = construct_few_shot_prompt(x_train, y_train, x_test, encoding_type='vanilla')
+inpt = instr_prefix + fspt.format(**x_test.to_dict('records')[0])
+print(inpt)
+```
+
+You should see the following output:
+```
+The task is to provide your best estimate for "Output". Please provide that and only that, without any additional text.
+
+
+
+
+Feature 0: 0.01
+Output: 10.03
+
+Feature 0: 72.03
+Output: 67.84
+
+Feature 0: 41.7
+Output:
+```
+
+### How to re-run some experiments
+Please see the folders in `src/experiments`. Each folder contains a `README.md` file with additional explanations, including the reasoning behind the experiment.
+
+(1) For the regression performance, over both linear and non-linear datasets, please check the files in `src/experiments/regression_performance`.
+For example, to re-run GPT-4, just run `python -m src.experiments.regression_performance.regression_performance_openai`. Please note that this command will re-run every dataset with `gpt-4-0125-preview`. Please change the code if you have different requirements.
+
+(2) For the adaptation (online learning) experiments, please see `src/experiments/regression_fast_adaptation`.
+
+(3) For the plateauing experiments, please see `src/experiments/regression_plateauing`.
+
+(4) For generating justifications, please see `src/experiments/regression_justifications`.
+
+(5) For contamination experiments, please see `src/experiments/regression_contamination_check`.
