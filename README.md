@@ -117,3 +117,12 @@ Selected LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) c
 
 
 ### Adaptation
+
+
+## How to
+
+### How to add a new dataset?
+Please check `hot_to_dataset.md`
+
+### How to add a new model?
+Please check `hot_to_model.md`
