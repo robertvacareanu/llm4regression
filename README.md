@@ -118,6 +118,26 @@ Selected LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) c
 
 ### Adaptation
 
+Best curve fit table:
+
+| model                    | friedman1 | friedman2 | friedman3 | original1 | original2 | regression_ni13 | regression_ni22 |
+| ------------------------ | --------- | --------- | --------- | --------- | --------- | --------------- | --------------- |
+| Claude 3 Opus            | linear    | sqrt      | sqrt      | log       | sqrt      | log             | log             |
+| GPT-4                    | linear    | sqrt      | sqrt      | log       | sqrt      | log             | sqrt            |
+| DBRX                     | linear    | log       | linear    | log       | sqrt      | sqrt            | sqrt            |
+| Mixtral 8x7B             | linear    | linear    | linear    | sqrt      | linear    | linear          | sqrt            |
+| AdaBoost                 | linear    | sqrt      | linear    | sqrt      | sqrt      | sqrt            | sqrt            |
+| Gradient Boosting        | sqrt      | sqrt      | linear    | log       | sqrt      | log             | sqrt            |
+| Linear Regression        | linear    | linear    | linear    | linear    | linear    | log             | log             |
+| Linear Regression + Poly | sqrt      | log       | log       | linear    | log       | log             | log             |
+| Random Forest            | linear    | sqrt      | linear    | sqrt      | sqrt      | sqrt            | linear          |
+
+
+Claure 3 Opus on `Original 1`
+
+![Claude 3 Opus Original 1](claude3opus_original1.png "Claude 3 Opus Original 1")
+
+
 
 ## Result data
 
