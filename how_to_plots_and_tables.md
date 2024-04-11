@@ -83,6 +83,9 @@ The code below is for creating rank heatmaps.
 To use different models, please change `model_order`. For different dataets, please change `datasets`.
 Please note that the code might need some minor adjustments. For example, which model is LLM, which is Traditional Supervised Methods, and which Unsupervised Methods. It can be done automatically using the `group` field.
 
+<details>
+  <summary>Code</summary>
+
 ```python
 # Part 1: Create the heatmap data
 ##########################
@@ -193,6 +196,8 @@ plt.show()
 # plt.savefig('example_heatmap_output.png')
 ```
 
+</details>
+
 Example of output:
 
 ![Rank Heatmap Datasets](example_heatmap_output.png "Example of heatmap output")
@@ -200,6 +205,9 @@ Example of output:
 
 ## How to do the linear/sqrt/log curve fits plot
 The code below is for creating linear/sqrt/log curve fits plots for a specific model and dataset.
+
+<details>
+    <summary>Code</summary>
 
 ```python
 import pandas as pd
@@ -292,6 +300,9 @@ plt.legend(fontsize=16)
 # plt.savefig('claude3opus_original1.png')
 ```
 
+
+</details>
+
 Example of output:
 
 ![Claude 3 Opus cumulative regret on Original 1 dataset](claude3opus_original1.png "Claude 3 Opus on Original 1")
@@ -300,6 +311,9 @@ Example of output:
 
 ## How to do get the regret table
 The code below is for creating the table
+
+<details>
+    <summary>Code</summary>
 
 ```python
 import pandas as pd
@@ -405,6 +419,7 @@ with pd.option_context('display.max_rows', None, 'display.max_columns', None):
 
 ```
 
+</details>
 The output should look like the table below:
 
 | model                    | friedman1 | friedman2 | friedman3 | original1 | original2 | regression_ni13 | regression_ni22 |
@@ -474,3 +489,122 @@ Running the above code will result in an output similar to the one below
 | Gradient Boosting | 24.83  | 9.6      | 8.67     | 8.5  | 9.1        | 15.00   |
 | Random Forest     | 31.50  | 17.2     | 14.33    | 17.0 | 16.3       | 22.00   |
 | Linear Regression | 1.17   | 25.8     | 16.00    | 10.0 | 19.7       | 12.75   |
+
+The complete code for the rank table shown in [Ranks](./README.md#Average-Ranks) is shown below.
+<details>
+    <summary>Code</summary>
+
+```python
+llms = [
+    "GPT-4",
+    "GPT-4 (20240409)",
+    "Chat GPT",
+    "Davinci 002",
+    "Babbage 002",
+    "Claude 3 Opus",
+    "Claude 3 Sonnet",
+    "Claude 3 Haiku",
+    "Gemini Pro",
+    "Mistral Medium",
+    "Cohere Command R Plus",
+    "DBRX",
+    "Mixtral 8x22B",
+    "Mixtral 8x7B",
+    "Mistral 7Bv2",
+    "Mistral 7B",
+    "Llama2 70B Chat HF",
+    "Code Llama 70B",
+    "Yi 34B Chat",
+]
+
+traditional_supervised_methods = [
+    "Linear Regression",
+    "Ridge",
+    "Lasso",
+    "MLP Wide 1",
+    "MLP Wide 2",
+    "MLP Wide 3",
+    "MLP Deep 1",
+    "MLP Deep 2",
+    "MLP Deep 3",
+    "Random Forest",
+    "Bagging",
+    "Gradient Boosting",
+    "AdaBoost",
+    "SVM",
+    "SVM + Scaler",
+    "KNN",
+    "KNN v2",
+    "KNN v3",
+    "Kernel Ridge",
+    "Linear Regression + Poly",
+    "Spline",
+]
+
+unsupervised_methods = [
+    'Average',
+    'Random', 
+    'Last',
+]
+
+interested_models = [
+    "GPT-4",
+    "GPT-4 (20240409)",
+    "Chat GPT",
+    "Claude 3 Opus",
+    "Claude 3 Sonnet",
+    "Gemini Pro",
+    "DBRX",
+    "Mixtral 8x22B",
+    "Mixtral 8x7B",
+    "Linear Regression",
+    "Gradient Boosting",
+    "Random Forest",
+    "Linear Regression + Poly",
+    "KNN",
+    'Average',
+    'Random',
+    'Last',
+]
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_json('data/outputs/lr_nlr.json')
+
+results = []
+for (datasets, name) in [
+    # Linear Regression Datasets
+    (['regression_ni11', 'regression_ni12', 'regression_ni13', 'regression_ni22', 'regression_ni23', 'regression_ni33', ], 'Linear'),
+    # Original Datasets - Random non-linear regression datasets that were written by us
+    (['original1', 'original2', 'original3', 'original4', 'original5', ], 'Original'),
+    # Friedman Datasets - The benchmarking datasets proposed by Friedman
+    (['friedman1', 'friedman2', 'friedman3', ], 'Friedman'),
+    # NN Datasets - Random datasets created using a randomly initialized neural network
+    (['simple_random_nn1', 'transformer1', ], 'NN'),
+    # Non-Linear Regression Datasets
+    (['friedman1', 'friedman2', 'friedman3', 'original1', 'original2', 'original3', 'original4', 'original5', 'simple_random_nn1', 'transformer1', ], 'Non-Linear'),
+    # Overall
+    (['regression_ni11', 'regression_ni12', 'regression_ni13', 'regression_ni22', 'regression_ni23', 'regression_ni33', 'friedman1', 'friedman2', 'friedman3', 'original1', 'original2', 'original3', 'original4', 'original5', 'simple_random_nn1', 'transformer1', ], 'Overall'),
+]:
+    cdf = df[df['dataset'].isin(datasets)]  
+    # cdf = cdf[cdf['model'].isin(llms + traditional_supervised_methods + unsupervised_methods)]
+    cdf = cdf[cdf['model'].isin(interested_models)]
+    current_data = []
+    # Calculate ranks
+    for (key, group) in cdf.groupby(by=['dataset', 'model']).agg({'l1': 'mean'}).reset_index().groupby(by=['dataset']):
+        for idx, line in enumerate(group.sort_values(by=['l1']).to_dict('records')):
+            current_data.append({
+                'dataset': line['dataset'].replace('Regression ', ''),
+                'model': line['model'],
+                'rank': int(idx + 1),
+            })
+    cdf = pd.DataFrame(current_data)
+    cdf = cdf.groupby(by=['model']).agg({'rank': 'mean'}).rename(columns={'rank': name})
+    results.append(cdf)
+
+result = pd.concat(results, axis=1).loc[interested_models]
+display(result.sort_values('Overall'))
+```
+
+</details>
