@@ -1,4 +1,56 @@
-# How to do some of the plots/tables from the paper
+# How to create some of the plots/tables from the paper
+
+## Creating a json file from the outputs
+The code below is an example of how to extract the output into a `.json` file, which will then be loaded into a pandas dataframe to create the plots and tables.
+
+<details>
+    <summary>Code</summary>
+
+```python
+from analysis_utils import *
+
+result = []
+for f in glob.glob('results/regression_performance/*/*.jsonl') + glob.glob('results/regression_performance/sklearn/*/*.jsonl'):
+    setting_details = f.split('/')[-2:]
+
+    model = name_to_short[setting_details[0]]
+
+    outputs = []
+    with open(f) as fin:
+        for line in fin:
+            loaded = json.loads(line)
+            is_it_valid = []
+            if 'sklearn' not in f:
+                preds_valid = [output_to_number(x) for x in loaded['full_outputs']]
+                preds       = [x[0] for x in preds_valid]
+                is_it_valid = [x[1] for x in preds_valid]
+                outputs.append({**loaded, 'preds': preds, 'is_it_valid': is_it_valid})
+            else:
+                outputs.append({**loaded, 'is_it_valid': [True for _ in loaded['preds']]})
+    
+    
+    for sample_id, o in enumerate(outputs):
+        if False in o['is_it_valid']:
+            print(f, sample_id)
+            continue
+        result.append({
+            'group': name_to_group[setting_details[0]],
+            'model': model, # The short, human-readable name of the method
+            'method': o['method'], # The crude short name of the method (e.g., lr)
+            'dataset': o['dataset'],
+            'pred': o['preds'][0],
+            'gold': o['gold'][0],
+            'full_output': o.get('full_outputs', [str(o['preds'][0])])[0],
+            'l1': np.abs(np.array(o['preds']) - np.array(o['gold'])).sum()/len(o['preds']),
+            'seed': o['seed'],
+        })
+
+df = pd.DataFrame(result)
+df.to_json('data/outputs/lr_nlr.json')
+```
+
+</details>
+
 
 ## How to do a barplot (e.g., Figure 1)
 ```python
@@ -608,3 +660,4 @@ display(result.sort_values('Overall'))
 ```
 
 </details>
+

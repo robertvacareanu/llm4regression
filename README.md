@@ -1,6 +1,8 @@
 # LLMs Can Do Regression
 This project explores the extent to which LLMs can do regression when given (input, output) pairs as in-context examples.
 
+PDF available at [arxiv](https://arxiv.org/pdf/2404.07544.pdf).
+
 ## TL;DR: 
 LLMs perform surprisingly well. 
 Despite no parameter updates, Claude 3 Opus consistently performs better than traditional methods such as Gradient Boosting or Random Forest. 
@@ -131,7 +133,7 @@ Code to generate this table is available in [how_to_create_plots_and_tables.md](
 
 
 ## Datasets
-We used various linear and non-linear synthetic datasets. The exact definitions are available in `src/dataset_utils.py`. We did add noise.
+We used various linear and non-linear synthetic datasets. The exact definitions are available in `src/dataset_utils.py`. We did not add noise.
 
 | Name              | Additional Details                                                                                                             | Definition                                                                                                      |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
@@ -154,9 +156,11 @@ We used various linear and non-linear synthetic datasets. The exact definitions 
 | Character         | Mapping random characters (e.g., `a`) to a numeric value. Then sampling a vector to map back the characters                    | See `get_character_regression` in `src/dataset_utils.py`                                                                                                                |
 
 ## Results At A Glance
+The heatmap below is structured into 3 blocks: (1) LLMs (left), (2) Traditional Supervised Methods (middle), and (3) Unsupervised baseline (right). Each model had access to the same dataset, containing 50 (input, output) examples and was asked to predict the output corresponding to the same test sample. The performance is averaged across 100 random runs.
+
 Overall, LLMs *generally* outperform the unsupervised heuristics, suggesting that the in-context learning mechanism is more complex than such simple heuristics.
 
-Selected LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) can outperform supervised methods such as KNN, Gradient Boosting, or Random Forest. For example, except on the datasets derived from neural networks (and `Original 4`), Claude 3 Opus outperforms KNN, Gradient Boosting, and Random Forest on **all** datasets.
+Certain LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) can outperform supervised methods such as KNN, Gradient Boosting, or Random Forest. For example, except on the datasets derived from neural networks (and `Original 4`), Claude 3 Opus outperforms KNN, Gradient Boosting, and Random Forest on **all** datasets. This strong performance persists until at least 500 examples (Appendix O in the [arxiv paper](https://arxiv.org/pdf/2404.07544.pdf)).
 
 ### Rank Heatmap
 
@@ -164,6 +168,7 @@ Selected LLMs, both private (e.g., Claude 3 Opus, GPT-4) and open (e.g., DBRX) c
 
 
 ### Adaptation
+Borrowing from the Online Learning community, we empirically analyze how the cumulative regret (i.e., cumulative loss) grows with respect to the time step (number of examples in context). We ran up to 100 time steps and average the results across 3 random runs. We included in Appendix O in the [arxiv paper](https://arxiv.org/pdf/2404.07544.pdf) how the performance of GPT-4 scales with up to 500 examples. GPT-4 still performs well. For example, it outperforms Random Forest in 92% of the cases.
 
 Best curve fit table:
 
@@ -180,7 +185,7 @@ Best curve fit table:
 | Random Forest            | linear    | sqrt      | linear    | sqrt      | sqrt      | sqrt            | linear          |
 
 
-Claure 3 Opus on `Original 1`
+Claude 3 Opus on `Original 1`
 
 ![Claude 3 Opus Original 1](claude3opus_original1.png "Claude 3 Opus Original 1")
 
@@ -199,23 +204,23 @@ We found:
 
 ## Data
 
-The resulting data for all models can be found in `data/outputs`. Please see `how_to_create_plots_and_tables.md` for examples on how to interact with it.
+The resulting data for all models can be found in `data/outputs`. Please see [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables.md) for examples on how to interact with it.
 
 ## How to
 
 ### How to add a new dataset?
-Please check `hot_to_add_dataset.md`.
+Please check [hot_to_add_dataset.md](./how_to_add_dataset.md).
 
 ### How to add a new model?
-Please check `hot_to_add_model.md`.
+Please check [hot_to_add_model.md](./hot_to_add_model.md).
 
 ### How to recreate some of the plots/tables
-Please check `how_to_create_plots_and_tables`.
+Please check [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables).
 
 There are examples on how to interact with the data there.
 
 ### How to see how a prompt looks like
-Please run the following command, inside project.
+Please run the following command, inside this folder.
 
 First, run `python`, then:
 
@@ -254,7 +259,7 @@ Output:
 Additionally, there is an example in `prompt.txt`.
 
 ### How to re-run some experiments
-Please see the folders in `src/experiments`. Each folder contains a `README.md` file with additional explanations, including the reasoning behind the experiment.
+Please see the folders in `src/experiments`. Each folder contains a `README.md` file with additional explanations, including the reasoning behind the experiment. You will need specific API keys for models such as Claude, GPT-4, etc. I used the following files: (1) `api.key` for OpenAI, (2) `api_deepinfra_personal.key` for DeepInfra, (3) `api_openrouter_personal.key` for OpenRouter, and (4) `api_fireworks_personal.key` for Fireworks.
 
 (1) For the regression performance, over both linear and non-linear datasets, please check the files in `src/experiments/regression_performance`.
 For example, to re-run GPT-4, just run `python -m src.experiments.regression_performance.regression_performance_openai`. Please note that this command will re-run every dataset with `gpt-4-0125-preview`. Please change the code if you have different requirements.
@@ -266,3 +271,9 @@ For example, to re-run GPT-4, just run `python -m src.experiments.regression_per
 (4) For generating justifications, please see `src/experiments/regression_justifications`.
 
 (5) For contamination experiments, please see `src/experiments/regression_contamination_check`.
+
+
+
+
+The outputs of the above experiments are released and available at `data/outputs`. Please see [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables.md) for examples on how to interact with it and how to create the plots and tables used here.
+
