@@ -1,9 +1,11 @@
 # LLMs Can Do Regression
 This project explores the extent to which LLMs can do regression when given (input, output) pairs as in-context examples.
 
-TL;DR: 
+## TL;DR: 
 LLMs perform surprisingly well. 
-Despite no parameter updates, Claude 3 Opus consistently performs better than traditional methods such as Gradient Boosting or Random Forest. Strong performance is present in open-weights models such as DBRX or Mixtral 8x22B. For example, both DBRX and Mixtral rank higher, on average, than Random Forest.
+Despite no parameter updates, Claude 3 Opus consistently performs better than traditional methods such as Gradient Boosting or Random Forest. 
+Strong performance is present in open-weights models such as DBRX or Mixtral 8x22B as well. 
+For example, both DBRX and Mixtral rank higher, on average, than Random Forest.
 
 ## Models
 We use three types of models:
@@ -125,7 +127,7 @@ For example, on this set of models, Claude 3 Opus obtains the best rank on avera
 | Random                   | 16.50                               | 16.6                                  | 16.33                                 | 16.5                            | 16.5                                    | 16.50   |
 | Last                     | 16.50                               | 16.4                                  | 16.66                                 | 16.5                            | 16.5                                    | 16.50   |
 
-Code to generate this table is available in [how_to_plots_and_tables.md](./how_to_plots_and_tables.md#How-to-get-an-average-rank-table-like-in-the-`README.md`).
+Code to generate this table is available in [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables.md#How-to-get-an-average-rank-table-like-in-the-`README.md`).
 
 
 ## Datasets
@@ -197,18 +199,18 @@ We found:
 
 ## Data
 
-The resulting data for all models can be found in `data/outputs`. Please see `how_to_plots_and_tables.md` for examples on how to interact with it.
+The resulting data for all models can be found in `data/outputs`. Please see `how_to_create_plots_and_tables.md` for examples on how to interact with it.
 
 ## How to
 
 ### How to add a new dataset?
-Please check `hot_to_dataset.md`.
+Please check `hot_to_add_dataset.md`.
 
 ### How to add a new model?
-Please check `hot_to_model.md`.
+Please check `hot_to_add_model.md`.
 
 ### How to recreate some of the plots/tables
-Please check `how_to_plots_and_tables`.
+Please check `how_to_create_plots_and_tables`.
 
 There are examples on how to interact with the data there.
 
