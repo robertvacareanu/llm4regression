@@ -256,7 +256,9 @@ Feature 0: 41.7
 Output:
 ```
 
-Additionally, there is an example in `prompt.txt`.
+Additionally, there is an example in `prompt.txt`. 
+
+More examples, together with links to Chat (note, however, that we used the API; This is just to be used as an example) can be found in `data/prompts`.
 
 ### How to re-run some experiments
 Please see the folders in `src/experiments`. Each folder contains a `README.md` file with additional explanations, including the reasoning behind the experiment. You will need specific API keys for models such as Claude, GPT-4, etc. I used the following files: (1) `api.key` for OpenAI, (2) `api_deepinfra_personal.key` for DeepInfra, (3) `api_openrouter_personal.key` for OpenRouter, and (4) `api_fireworks_personal.key` for Fireworks.
