@@ -14,4 +14,6 @@ Below are the expected outputs.
 - `friedman3_s1001.txt` -> `1.41`
 - `friedman3_s1002.txt` -> `1.45`
 
+- `original1_s1000.txt` -> `80.39` ([GPT-4](https://chat.openai.com/share/808da995-99e6-444a-94da-fc7cd5ad49ff) predicts `83.63` in chat; Note that all experiments are over API; I included in `data/prompts/api_outputs/original1.jsonl` the output when calling the API)
+
 For a shorter example with only 2 (input, output) pairs, please refer to `prompt.txt`. 
