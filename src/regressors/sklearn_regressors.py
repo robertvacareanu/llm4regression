@@ -391,9 +391,14 @@ def knn_regression_v4(x_train, x_test, y_train, y_test, random_state=1):
     }
 
 def knn_regression_v5_adaptable(x_train, x_test, y_train, y_test, random_state=1):
+    """
+    The idea behind this function is to have a KNN model that adapts to the size of the training set
+    Presumably, when you have very little training data, you want to use a small number of neighbors
+    As the number of examples increase, a larger numbers of neighbors is fine.
+    """
     if x_train.shape[0] < 3:
         n_neighbors=1
-    elif 3 < x_train.shape[0] < 7:
+    elif x_train.shape[0] < 7:
         n_neighbors=3
     else:
         n_neighbors=5

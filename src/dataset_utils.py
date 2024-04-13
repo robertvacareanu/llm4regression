@@ -298,7 +298,8 @@ def get_original2(random_state=1, max_train=64, max_test=32, noise_level=0.0, **
 
 def get_random_nn1(random_state=1, max_train=64, max_test=32, **kwargs):
     """
-    Like a line, but with some giggles
+    Initialize a neural network. This will serve as as the regression function f
+    Create a dataset by randomly sampling data, then running it through f (i.e., the neural network).
     """
     import torch
     import torch.nn as nn
@@ -366,7 +367,9 @@ def get_random_nn1(random_state=1, max_train=64, max_test=32, **kwargs):
 
 def get_random_nn1_scaled(random_state=1, max_train=64, max_test=32, **kwargs):
     """
-    Like a line, but with some giggles
+    Initialize a neural network. This will serve as as the regression function f
+    Create a dataset by randomly sampling data, then running it through f (i.e., the neural network).
+    Different from `get_random_nn1`, scale the output
     """
     import torch
     import torch.nn as nn
@@ -435,6 +438,7 @@ def get_random_nn1_scaled(random_state=1, max_train=64, max_test=32, **kwargs):
 
 def get_random_nn2(random_state=1, max_train=64, max_test=32, **kwargs):
     """
+    Similar to `get_random_nn1`, but define fancier neural networks (e.g., with skip connections, layer normalization, etc.)
     """
     import torch
     import torch.nn as nn
@@ -529,6 +533,8 @@ def get_random_nn2(random_state=1, max_train=64, max_test=32, **kwargs):
 
 def get_random_transformer(random_state=1, max_train=64, max_test=32, **kwargs):
     """
+    Initialize a random transformer encoder block. This will serve as as the regression function f
+    Sample random data, then run it through f (i.e., the transformer) to create the dataset
     """
     import torch
     import torch.nn as nn
@@ -585,6 +591,13 @@ def get_random_transformer(random_state=1, max_train=64, max_test=32, **kwargs):
 
 
 def get_character_regression(random_state=1, max_train=64, max_test=32, **kwargs):
+    """
+    Instead of having numbers as input and number as output, have characters as input and number as output
+    Essentially, sample a subset of characters (to keep the number of necessary input examples small), 
+    then assign a random numeric value to each character
+    Then, sample a random weight vector
+    The output is created by doing a dot product
+    """
     r = random.Random(random_state)
     # r.sample(<..>, k=len(<..>)) -> Like shuffle, but shuffle does not return anything; Here, it does.
     letter_to_index = [(c, i) for (c, i) in enumerate(r.sample(list(string.ascii_lowercase), k=len(string.ascii_lowercase)))]
@@ -631,6 +644,8 @@ def get_character_regression(random_state=1, max_train=64, max_test=32, **kwargs
 
 def get_unlearnable1(random_state=1, max_train=64, max_test=32, **kwargs):
     """
+    An unlearnable dataset
+    The best you can do is to predict the mean
     """
     generator = np.random.RandomState(random_state)
 
@@ -666,7 +681,8 @@ def get_unlearnable1(random_state=1, max_train=64, max_test=32, **kwargs):
 
 def get_unlearnable2(random_state=1, max_train=64, max_test=32, **kwargs):
     """
-    Using numbers from random.org
+    An unlearnable dataset (similar to `get_unlearnable1`), but using numbers from random.org
+    The best you can do is to predict the mean
     """
 
     with open('data/randomorg1.txt') as fin:
@@ -706,6 +722,8 @@ def get_unlearnable2(random_state=1, max_train=64, max_test=32, **kwargs):
 
 def get_original3(random_state=1, max_train=64, max_test=32, noise_level=0.0, **kwargs):
     """
+    A new original function
+    Experimenting with other operators (e.g., e^x[0])
     """
     generator = np.random.RandomState(random_state)
 
@@ -750,6 +768,8 @@ def get_original3(random_state=1, max_train=64, max_test=32, noise_level=0.0, **
 
 def get_original4(random_state=1, max_train=64, max_test=32, noise_level=0.0, **kwargs):
     """
+    A new original function
+    Using many operators together (e.g., sin, cos, sqrt, log, fractions)
     """
     generator = np.random.RandomState(random_state)
 
@@ -788,6 +808,8 @@ def get_original4(random_state=1, max_train=64, max_test=32, noise_level=0.0, **
 
 def get_original5(random_state=1, max_train=64, max_test=32, noise_level=0.0, **kwargs):
     """
+    A new original function
+    Experimenting with softmax
     """
     generator = np.random.RandomState(random_state)
 
@@ -828,6 +850,13 @@ def get_original5(random_state=1, max_train=64, max_test=32, noise_level=0.0, **
 
 
 def get_dataset(name: str):
+    """
+    Get a dataset by name
+
+    :param name (str): The name of the dataset
+    :returns a lambda function which, typically, given `random_state`, `max_train`, `max_test` will return a new dataset
+    """
+
     dataset_to_fn = {
         'real_estate'    : lambda path='data/real_estate/real_estate.csv', random_state=1, max_train=64, max_test=32: get_real_estate_data(path=path, random_state=random_state, max_train=max_train, max_test=max_test),
 
@@ -901,6 +930,9 @@ def get_dataset(name: str):
 
 
 if __name__ == "__main__":
+    """
+    Simple example of how to use `get_dataset`.
+    """
     (x_train, x_test, y_train, y_test), y_fn = get_dataset('real_estate')()
     print(x_train)
     print("\n")
