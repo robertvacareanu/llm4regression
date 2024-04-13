@@ -3,7 +3,9 @@ This project explores the extent to which LLMs can do regression when given (inp
 
 Preprint available on ArXiv: [From Words to Numbers: Your Large Language Model Is Secretly A Capable Regressor When Given In-Context Examples](https://arxiv.org/pdf/2404.07544.pdf).
 
-Please refer to the [FAQ.md](./FAQ.md) for answers to some common questions.
+Please refer to the [FAQ.md](./FAQ.md) for answers to some common questions. 
+
+Examples of GPT-4 chats with full prompts are available in [data/prompts/README.md](./data/prompts/README.md). For example, [GPT-4 predicts `726.89` on Friedman #2, while gold is `689.01`](https://chat.openai.com/share/78298975-19d5-4731-b29b-7a60fae88bd3). (Note: we used API for all our experiments; we included links Chat just as an example)
 
 ## TL;DR: 
 LLMs perform surprisingly well. 
