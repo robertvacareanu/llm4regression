@@ -1,3 +1,7 @@
+"""
+
+python -m src.experiments.regression_performance.regression_performance_deepinfra
+"""
 from src.regressors.remote_llm_regressor import *
 from src.dataset_utils import get_dataset
 from src.score_utils import scores
@@ -8,8 +12,16 @@ import os
 import warnings
 from pathlib import Path
 
-with open('api_deepinfra_personal.key') as fin:
-    os.environ['DEEPINFRA_API_TOKEN'] = fin.readlines()[0].strip()
+if 'DEEPINFRA_API_TOKEN' not in os.environ:
+    print("No Fireworks API key found in environment variables. Will attempt to read from `api_deepinfra_personal.key`.")
+    if os.path.exists('api_deepinfra_personal.key'):
+        with open('api_deepinfra_personal.key') as fin:
+            os.environ['DEEPINFRA_API_TOKEN'] = fin.readlines()[0].strip()
+    else:
+        print("No `api_deepinfra_personal.key` file found. Please create one with your Fireworks API key or set the `DEEPINFRA_API_TOKEN` variable.")
+        exit()
+
+
 
     
 for (llm, model_name) in [

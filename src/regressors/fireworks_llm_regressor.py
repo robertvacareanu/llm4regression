@@ -7,6 +7,7 @@ For Fireworks
 import numpy as np
 import time
 from src.regressors.prompts import construct_few_shot_prompt
+from langchain_fireworks import Fireworks 
 
 def llm_regression(llm, x_train, x_test, y_train, y_test, encoding_type, model_name, add_instr_prefix=False, instr_prefix='The task is to provide your best estimate for "Output". Please provide that and only that, without any additional text.\n\n\n\n\n'):
     examples_test = []

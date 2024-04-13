@@ -6,6 +6,7 @@ For a locally deployed model (i.e., `AutoModelForCausalLM`)
 import numpy as np
 from src.regressors.prompts import construct_few_shot_prompt
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
 
 

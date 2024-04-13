@@ -10,8 +10,14 @@ import os
 import warnings
 from pathlib import Path
 
-with open('api_openrouter_personal.key') as fin:
-    os.environ['OPENROUTER_API_KEY'] = fin.readlines()[0].strip()
+if 'OPENROUTER_API_KEY' not in os.environ:
+    print("No OpenRouter API key found in environment variables. Will attempt to read from `api_openrouter_personal.key`.")
+    if os.path.exists('api_openrouter_personal.key'):
+        with open('api_openrouter_personal.key') as fin:
+            os.environ['OPENROUTER_API_KEY'] = fin.readlines()[0].strip()
+    else:
+        print("No `api_openrouter_personal.key` file found. Please create one with your OpenAI API key or set the `OPENROUTER_API_KEY` variable.")
+        exit()
 
 
 for (llm, model_name) in [

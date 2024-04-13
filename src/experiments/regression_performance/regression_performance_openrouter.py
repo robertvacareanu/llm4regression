@@ -19,21 +19,16 @@ import os
 import warnings
 from pathlib import Path
 
-with open('api_openrouter_personal.key') as fin:
-    os.environ['OPENROUTER_API_KEY'] = fin.readlines()[0].strip()
 
-# llm = DeepInfra(model_id='mistralai/Mixtral-8x7B-Instruct-v0.1')
-# model_name = 'mixtral8x7B'
-# llm = DeepInfra(model_id='meta-llama/Llama-2-70b-chat-hf')
-# model_name = 'llama270bchathf'
-# llm = DeepInfra(model_id='01-ai/Yi-34B-Chat')
-# model_name = 'yi34chat'
-# llm = DeepInfra(model_id='mistralai/Mistral-7B-Instruct-v0.1')
-# model_name = 'mixtral7B'
-# llm = DeepInfra(model_id='EleutherAI/pythia-12b')
-# model_name = 'pythia12B'
-# llm = DeepInfra(model_id='codellama/CodeLlama-70b-Instruct-hf')
-# model_name = 'codellama70b'
+if 'OPENROUTER_API_KEY' not in os.environ:
+    print("No OpenRouter API key found in environment variables. Will attempt to read from `api_openrouter_personal.key`.")
+    if os.path.exists('api_openrouter_personal.key'):
+        with open('api_openrouter_personal.key') as fin:
+            os.environ['OPENROUTER_API_KEY'] = fin.readlines()[0].strip()
+    else:
+        print("No `api_openrouter_personal.key` file found. Please create one with your OpenAI API key or set the `OPENROUTER_API_KEY` variable.")
+        exit()
+
 
 
 for (llm, model_name) in [

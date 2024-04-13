@@ -1,3 +1,7 @@
+"""
+
+python -m src.experiments.regression_performance.regression_performance_fireworks
+"""
 from src.regressors.fireworks_llm_regressor import *
 from src.dataset_utils import get_dataset
 from src.score_utils import scores
@@ -6,8 +10,14 @@ import json
 import os
 from pathlib import Path
 
-with open('api_fireworks_personal.key') as fin:
-    os.environ['FIREWORKS_API_KEY'] = fin.readlines()[0].strip()
+if 'FIREWORKS_API_KEY' not in os.environ:
+    print("No Fireworks API key found in environment variables. Will attempt to read from `api_fireworks_personal.api`.")
+    if os.path.exists('api_fireworks_personal.api'):
+        with open('api_fireworks_personal.api') as fin:
+            os.environ['FIREWORKS_API_KEY'] = fin.readlines()[0].strip()
+    else:
+        print("No `api_fireworks_personal.api` file found. Please create one with your Fireworks API key or set the `FIREWORKS_API_KEY` variable.")
+        exit()
 
 
 for (llm, model_name) in [

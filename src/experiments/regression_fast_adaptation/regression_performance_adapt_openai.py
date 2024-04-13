@@ -10,10 +10,15 @@ import os
 import warnings
 from pathlib import Path
 
-with open('api_personal.key') as fin:
-    os.environ['OPENAI_API_KEY'] = fin.readlines()[0].strip()
+if 'OPENAI_API_KEY' not in os.environ:
+    print("No OpenAI API key found in environment variables. Will attempt to read from `api.key`.")
+    if os.path.exists('api.key'):
+        with open('api.key') as fin:
+            os.environ['OPENAI_API_KEY'] = fin.readlines()[0].strip()
+    else:
+        print("No `api.key` file found. Please create one with your OpenAI API key or set the `OPENAI_API_KEY` variable.")
+        exit()
 
-seed = 1
 
 # llm = ChatOpenAI(model_name="gpt-4-0125-preview", temperature=0)
 # model_name = 'gpt4_0125_preview'
@@ -36,7 +41,7 @@ with get_openai_callback() as cb:
         'friedman3',
         
     ]:
-        for seed in [2, 3]:
+        for seed in [1, 2, 3]:
             outputs = []
             ((x_train, _, y_train, _), y_fn) = get_dataset(dataset)(max_train=101, noise=0, random_state=seed, round=True, round_value=2)
             def run():

@@ -1,19 +1,3 @@
-from src.regressors.sklearn_regressors import (linear_regression,
-            ridge, 
-            lasso, 
-            mlp_universal_approximation_theorem1, 
-            mlp_universal_approximation_theorem2, 
-            mlp_universal_approximation_theorem3, 
-            mlp_deep1, 
-            mlp_deep2, 
-            mlp_deep3, 
-            random_forest, 
-            bagging, 
-            gradient_boosting, 
-            adaboost, 
-            voting, 
-            baseline
-)
 from src.regressors.fireworks_llm_regressor import *
 from src.dataset_utils import get_dataset
 from src.score_utils import scores
@@ -23,21 +7,14 @@ import os
 import warnings
 from pathlib import Path
 
-with open('api_fireworks_personal.key') as fin:
-    os.environ['FIREWORKS_API_KEY'] = fin.readlines()[0].strip()
-
-# llm = DeepInfra(model_id='mistralai/Mixtral-8x7B-Instruct-v0.1')
-# model_name = 'mixtral8x7B'
-# llm = DeepInfra(model_id='meta-llama/Llama-2-70b-chat-hf')
-# model_name = 'llama270bchathf'
-# llm = DeepInfra(model_id='01-ai/Yi-34B-Chat')
-# model_name = 'yi34chat'
-# llm = DeepInfra(model_id='mistralai/Mistral-7B-Instruct-v0.1')
-# model_name = 'mixtral7B'
-# llm = DeepInfra(model_id='EleutherAI/pythia-12b')
-# model_name = 'pythia12B'
-# llm = DeepInfra(model_id='codellama/CodeLlama-70b-Instruct-hf')
-# model_name = 'codellama70b'
+if 'FIREWORKS_API_KEY' not in os.environ:
+    print("No Fireworks API key found in environment variables. Will attempt to read from `api_fireworks_personal.api`.")
+    if os.path.exists('api_fireworks_personal.api'):
+        with open('api_fireworks_personal.api') as fin:
+            os.environ['FIREWORKS_API_KEY'] = fin.readlines()[0].strip()
+    else:
+        print("No `api_fireworks_personal.api` file found. Please create one with your Fireworks API key or set the `FIREWORKS_API_KEY` variable.")
+        exit()
 
 
 for (llm, model_name) in [
