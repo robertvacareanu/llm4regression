@@ -10,28 +10,9 @@ Models considered:
     
 Running command: python -i -m src.experiments.regression_performance.regression_performance_openrouter
 """
-from src.regressors.sklearn_regressors import (linear_regression,
-            ridge, 
-            lasso, 
-            mlp_universal_approximation_theorem1, 
-            mlp_universal_approximation_theorem2, 
-            mlp_universal_approximation_theorem3, 
-            mlp_deep1, 
-            mlp_deep2, 
-            mlp_deep3, 
-            random_forest, 
-            bagging, 
-            gradient_boosting, 
-            adaboost, 
-            voting, 
-            baseline
-)
 from src.regressors.openrouter_llm_regressor import *
 from src.dataset_utils import get_dataset
 from src.score_utils import scores
-from langchain.chat_models import ChatOpenAI
-from langchain_community.llms import DeepInfra
-from langchain.callbacks import get_openai_callback, tracing_v2_enabled
 import tqdm
 import json
 import os
