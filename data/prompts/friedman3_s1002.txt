@@ -1,0 +1,310 @@
+The task is to provide your best estimate for "Output". Please provide that and only that, without any additional text.
+
+
+
+
+Feature 0: 4.19
+Feature 1: 371.5
+Feature 2: 0.34
+Feature 3: 2.63
+Output: 1.54
+
+Feature 0: 50.8
+Feature 1: 968.27
+Feature 2: 0.44
+Feature 3: 4.66
+Output: 1.45
+
+Feature 0: 96.78
+Feature 1: 471.07
+Feature 2: 0.99
+Feature 3: 3.97
+Output: 1.37
+
+Feature 0: 88.18
+Feature 1: 1328.55
+Feature 2: 0.81
+Feature 3: 3.48
+Output: 1.49
+
+Feature 0: 58.41
+Feature 1: 1099.59
+Feature 2: 0.24
+Feature 3: 8.29
+Output: 1.35
+
+Feature 0: 93.03
+Feature 1: 1210.35
+Feature 2: 0.4
+Feature 3: 5.52
+Output: 1.38
+
+Feature 0: 75.23
+Feature 1: 1133.43
+Feature 2: 0.44
+Feature 3: 5.85
+Output: 1.42
+
+Feature 0: 9.19
+Feature 1: 943.56
+Feature 2: 0.8
+Feature 3: 4.78
+Output: 1.56
+
+Feature 0: 61.74
+Feature 1: 1480.64
+Feature 2: 0.26
+Feature 3: 7.35
+Output: 1.41
+
+Feature 0: 12.9
+Feature 1: 879.02
+Feature 2: 0.42
+Feature 3: 7.03
+Output: 1.54
+
+Feature 0: 20.09
+Feature 1: 1113.28
+Feature 2: 0.91
+Feature 3: 6.52
+Output: 1.55
+
+Feature 0: 36.49
+Feature 1: 1344.96
+Feature 2: 0.82
+Feature 3: 4.55
+Output: 1.54
+
+Feature 0: 39.4
+Feature 1: 1615.02
+Feature 2: 0.17
+Feature 3: 4.48
+Output: 1.43
+
+Feature 0: 9.12
+Feature 1: 1232.48
+Feature 2: 0.14
+Feature 3: 5.13
+Output: 1.52
+
+Feature 0: 55.13
+Feature 1: 1256.91
+Feature 2: 0.05
+Feature 3: 4.53
+Output: 0.8
+
+Feature 0: 83.88
+Feature 1: 590.22
+Feature 2: 0.61
+Feature 3: 5.54
+Output: 1.34
+
+Feature 0: 66.02
+Feature 1: 1000.19
+Feature 2: 0.52
+Feature 3: 10.99
+Output: 1.45
+
+Feature 0: 2.41
+Feature 1: 468.12
+Feature 2: 0.89
+Feature 3: 5.54
+Output: 1.57
+
+Feature 0: 12.87
+Feature 1: 655.56
+Feature 2: 0.02
+Feature 3: 5.64
+Output: 0.86
+
+Feature 0: 12.39
+Feature 1: 1562.37
+Feature 2: 0.51
+Feature 3: 5.08
+Output: 1.56
+
+Feature 0: 87.55
+Feature 1: 799.13
+Feature 2: 0.47
+Feature 3: 1.9
+Output: 1.34
+
+Feature 0: 76.56
+Feature 1: 927.34
+Feature 2: 0.42
+Feature 3: 5.0
+Output: 1.38
+
+Feature 0: 44.92
+Feature 1: 456.3
+Feature 2: 0.09
+Feature 3: 8.51
+Output: 0.75
+
+Feature 0: 88.08
+Feature 1: 1381.89
+Feature 2: 0.61
+Feature 3: 1.45
+Output: 1.47
+
+Feature 0: 46.44
+Feature 1: 269.74
+Feature 2: 0.67
+Feature 3: 5.92
+Output: 1.32
+
+Feature 0: 78.33
+Feature 1: 1651.1
+Feature 2: 0.49
+Feature 3: 4.74
+Output: 1.48
+
+Feature 0: 88.41
+Feature 1: 1566.72
+Feature 2: 0.95
+Feature 3: 10.36
+Output: 1.51
+
+Feature 0: 16.72
+Feature 1: 1376.32
+Feature 2: 0.29
+Feature 3: 3.37
+Output: 1.53
+
+Feature 0: 33.31
+Feature 1: 930.59
+Feature 2: 0.13
+Feature 3: 4.98
+Output: 1.3
+
+Feature 0: 38.07
+Feature 1: 1016.65
+Feature 2: 0.23
+Feature 3: 8.65
+Output: 1.41
+
+Feature 0: 84.6
+Feature 1: 867.9
+Feature 2: 0.94
+Feature 3: 9.65
+Output: 1.47
+
+Feature 0: 5.12
+Feature 1: 1548.34
+Feature 2: 0.66
+Feature 3: 9.55
+Output: 1.57
+
+Feature 0: 1.1
+Feature 1: 1434.11
+Feature 2: 0.39
+Feature 3: 5.65
+Output: 1.57
+
+Feature 0: 11.93
+Feature 1: 541.3
+Feature 2: 0.55
+Feature 3: 2.79
+Output: 1.53
+
+Feature 0: 79.16
+Feature 1: 364.07
+Feature 2: 0.45
+Feature 3: 1.81
+Output: 1.12
+
+Feature 0: 30.43
+Feature 1: 1584.06
+Feature 2: 0.37
+Feature 3: 5.9
+Output: 1.52
+
+Feature 0: 33.71
+Feature 1: 1636.38
+Feature 2: 0.21
+Feature 3: 7.89
+Output: 1.47
+
+Feature 0: 62.22
+Feature 1: 602.99
+Feature 2: 0.3
+Feature 3: 2.76
+Output: 1.24
+
+Feature 0: 76.1
+Feature 1: 691.88
+Feature 2: 0.26
+Feature 3: 2.86
+Output: 1.17
+
+Feature 0: 23.9
+Feature 1: 616.08
+Feature 2: 0.04
+Feature 3: 6.81
+Output: 0.82
+
+Feature 0: 90.4
+Feature 1: 464.61
+Feature 2: 0.35
+Feature 3: 4.83
+Output: 1.06
+
+Feature 0: 22.97
+Feature 1: 1016.97
+Feature 2: 0.44
+Feature 3: 2.51
+Output: 1.52
+
+Feature 0: 80.67
+Feature 1: 351.34
+Feature 2: 0.35
+Feature 3: 7.15
+Output: 0.99
+
+Feature 0: 88.76
+Feature 1: 1452.35
+Feature 2: 0.81
+Feature 3: 5.54
+Output: 1.5
+
+Feature 0: 12.35
+Feature 1: 1523.57
+Feature 2: 0.52
+Feature 3: 7.99
+Output: 1.56
+
+Feature 0: 58.28
+Feature 1: 526.42
+Feature 2: 0.81
+Feature 3: 4.38
+Output: 1.44
+
+Feature 0: 78.3
+Feature 1: 718.31
+Feature 2: 0.39
+Feature 3: 2.0
+Output: 1.3
+
+Feature 0: 45.15
+Feature 1: 427.74
+Feature 2: 0.0
+Feature 3: 10.15
+Output: 0.01
+
+Feature 0: 18.31
+Feature 1: 808.38
+Feature 2: 0.13
+Feature 3: 7.57
+Output: 1.4
+
+Feature 0: 88.56
+Feature 1: 367.5
+Feature 2: 1.0
+Feature 3: 1.26
+Output: 1.33
+
+Feature 0: 35.39
+Feature 1: 1079.6
+Feature 2: 0.28
+Feature 3: 9.4
+Output:
