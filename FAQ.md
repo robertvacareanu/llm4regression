@@ -10,6 +10,7 @@
   - [Hasn't previous research already demonstrated that Transformers can do regression?](#hasnt-previous-research-already-demonstrated-that-transformers-can-do-regression)
   - [What if examples of Friedman #1, #2, #3 are already on the Web?](#what-if-examples-of-friedman-1-2-3-are-already-on-the-web)
   - [Why does Linear Regression perform so well in Figure 1, for example, outperforming Gradient Boosting?](#why-does-linear-regression-perform-so-well-in-figure-1-for-example-outperforming-gradient-boosting)
+  - [Did you fine-tune?](#did-you-fine-tune)
   - [How can I try it?](#how-can-i-try-it)
 
 
@@ -51,6 +52,10 @@ We considered this and discuss it in Appendix N. One approach we used was to wri
 ## Why does Linear Regression perform so well in Figure 1, for example, outperforming Gradient Boosting?
 
 Because that dataset is linear. On non-linear datasets (e.g., see heatmap on this repository), Linear Regression performs worse.
+
+## Did you fine-tune?
+
+No, we did not perform any additional training on the models. This includes no fine-tuning, prompt tuning, or reordering of examples. We used off-the-shelf LLMs. 
 
 ## How can I try it?
 
