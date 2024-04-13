@@ -1,7 +1,9 @@
 # LLMs Can Do Regression
 This project explores the extent to which LLMs can do regression when given (input, output) pairs as in-context examples.
 
-PDF available at [arxiv](https://arxiv.org/pdf/2404.07544.pdf).
+Preprint available on ArXiv: [From Words to Numbers: Your Large Language Model Is Secretly A Capable Regressor When Given In-Context Examples](https://arxiv.org/pdf/2404.07544.pdf).
+
+Please refer to the [FAQ.md](./FAQ.md) for answers to some common questions.
 
 ## TL;DR: 
 LLMs perform surprisingly well. 
