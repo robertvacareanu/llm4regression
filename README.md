@@ -11,7 +11,22 @@ Examples of GPT-4 chats with full prompts are available in [data/prompts/README.
 LLMs perform surprisingly well. 
 Despite no parameter updates, Claude 3 Opus consistently performs better than traditional methods such as Gradient Boosting or Random Forest. 
 Strong performance is present in open-weights models such as DBRX or Mixtral 8x22B as well. 
-For example, both DBRX and Mixtral rank higher, on average, than Random Forest.
+For example, both DBRX and Mixtral rank higher, on average, than Random Forest. Colab links and jupyter notebooks with examples provided.
+
+
+
+Colab links:
+- GPT-4 Example: [link](https://colab.research.google.com/drive/1Bk9uBCBvzuX00Rex-t1FN6CyB38zgFEt?usp=sharing)
+- GPT-4 Small Eval: [link](https://colab.research.google.com/drive/1_-uHvW2oLtcCXz0c-G_yCFnCF10GBBIi?usp=sharing)
+- Claude 3 Opus Example: [link](https://colab.research.google.com/drive/105jUAGanp7ZLG-Q9HeijQuhLPWRT1ANM?usp=sharing)
+- Claude 3 Opus Small Eval: [link](https://colab.research.google.com/drive/1-IH68TUuqf_CZyptSSrzta2MG9RZl9fS?usp=sharing)
+
+Jupyter Notebooks examples:
+- GPT-4 Example: [here](./gpt4_example.ipynb)
+- GPT-4 Small Eval: [here](./gpt4_eval)
+- Claude 3 Opus Example: [here](./claude3opus_example)
+- Claude 3 Opus Small Eval: [here](./claude3opus_eval)
+
 
 ## Models
 We use three types of models:
