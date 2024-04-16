@@ -63,6 +63,8 @@ No, we did not perform any additional training on the models. This includes no f
 
 The simplest way would be to copy-paste some of the examples from `data/prompts`. I also provide links to chats in [data/prompts/README.md](./data/prompts/README.md). Note, however, that I used the API, not the chat for the experiments. I included links to chat conversation because it is easy to share and to view. 
 
+Additionally, there are google colab links. But for those an API key is required.
+
 ## You do not use the traditional methods (e.g., Gradient Boosting) right
 
 I would be happy to run more experiments. Nevertheless, the message of this paper was not intended to be "LLMs are better than Gradient Boosting". Instead, this paper highlights the surprisingly powerful in-context learning capabilities of pre-trained LLMs like GPT-4 and Claude 3. That is, despite no parameter update, LLMs can (sometimes) outperform methods like the ones aforementioned, at least in small dataset regime (We tested with at most $500$ examples, as per Appendix O).
