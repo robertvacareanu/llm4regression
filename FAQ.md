@@ -12,6 +12,8 @@
   - [Why does Linear Regression perform so well in Figure 1, for example, outperforming Gradient Boosting?](#why-does-linear-regression-perform-so-well-in-figure-1-for-example-outperforming-gradient-boosting)
   - [Did you fine-tune?](#did-you-fine-tune)
   - [How can I try it?](#how-can-i-try-it)
+  - [You do not use the traditional methods (e.g., Gradient Boosting) right](#you-do-not-use-the-traditional-methods-eg-gradient-boosting-right)
+  - [I tried running examples on `chat.openai.com` and it wrote python code, executed it, then returned an answer](#i-tried-running-examples-on-chatopenaicom-and-it-wrote-python-code-executed-it-then-returned-an-answer)
 
 
 
@@ -60,3 +62,16 @@ No, we did not perform any additional training on the models. This includes no f
 ## How can I try it?
 
 The simplest way would be to copy-paste some of the examples from `data/prompts`. I also provide links to chats in [data/prompts/README.md](./data/prompts/README.md). Note, however, that I used the API, not the chat for the experiments. I included links to chat conversation because it is easy to share and to view. 
+
+## You do not use the traditional methods (e.g., Gradient Boosting) right
+
+Maybe. I am happy to run more experiments. Nevertheless, the message of this paper was not intended to be "LLMs are better than Gradient Boosting", but to show how when you train a large language model on internet-scale data, the model emerges 
+
+## I tried running examples on `chat.openai.com` and it wrote python code, executed it, then returned an answer
+
+This behavior, that of writing code and executing it, only occurs when using GPT models through Chat (i.e., via https://chat.openai.com/). This is possible because the "Code Interpreter" capability is enabled. 
+To prevent the model from generating code, the "Code Interpreter" capability can be disabled from settings (from "Customize ChatGPT"). 
+Once disabled, GPT-4 will not attempt to write code and will strictly generate the number. 
+
+This agent-like behavior is specific to the usage of GPT-4 via Chat (https://chat.openai.com/). This does not happen over the API (e.g., see answer from OpenAI ([link](https://community.openai.com/t/do-plugins-work-via-api-or-only-chatgpt/203701/2)))
+
