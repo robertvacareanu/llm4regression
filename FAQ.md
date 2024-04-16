@@ -65,7 +65,7 @@ The simplest way would be to copy-paste some of the examples from `data/prompts`
 
 ## You do not use the traditional methods (e.g., Gradient Boosting) right
 
-Maybe. I am happy to run more experiments. Nevertheless, the message of this paper was not intended to be "LLMs are better than Gradient Boosting", but to show how when you train a large language model on internet-scale data, the model emerges 
+I would be happy to run more experiments. Nevertheless, the message of this paper was not intended to be "LLMs are better than Gradient Boosting". Instead, this paper highlights the surprisingly powerful in-context learning capabilities of pre-trained LLMs like GPT-4 and Claude 3. That is, despite no parameter update, LLMs can (sometimes) outperform methods like the ones aforementioned, at least in small dataset regime (We tested with at most $500$ examples, as per Appendix O).
 
 ## I tried running examples on `chat.openai.com` and it wrote python code, executed it, then returned an answer
 
