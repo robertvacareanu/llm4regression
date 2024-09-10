@@ -3,6 +3,8 @@ This project explores the extent to which LLMs can do regression when given (inp
 
 Preprint available on ArXiv: [From Words to Numbers: Your Large Language Model Is Secretly A Capable Regressor When Given In-Context Examples](https://arxiv.org/pdf/2404.07544.pdf).
 
+Accepted at COLM: [From Words to Numbers: Your Large Language Model Is Secretly A Capable Regressor When Given In-Context Examples](https://openreview.net/pdf?id=LzpaUxcNFK).
+
 Please refer to the [FAQ.md](./FAQ.md) for answers to some common questions. 
 
 Examples of GPT-4 chats with full prompts are available in [data/prompts/README.md](./data/prompts/README.md). For example, [GPT-4 predicts `726.89` on Friedman #2, while gold is `689.01`](https://chat.openai.com/share/78298975-19d5-4731-b29b-7a60fae88bd3). (Note: we used API for all our experiments; we included Chat links just as simple examples)
@@ -174,6 +176,19 @@ We used various linear and non-linear synthetic datasets. The exact definitions 
 | Transformer 1     | Initializing a random transformer encoder block and running random data. The output is considered gold                         | See `get_random_transformer` in `src/dataset_utils.py`                                                                                                                |
 | Character         | Mapping random characters (e.g., `a`) to a numeric value. Then sampling a vector to map back the characters                    | See `get_character_regression` in `src/dataset_utils.py`                                                                                                                |
 
+
+### Real-World Datasets
+
+The camera ready version of the paper (publicly available since September 3rd [link](https://openreview.net/pdf?id=LzpaUxcNFK)) contains results with five real-world datasets:
+- Liver Disorders ([UCI id=60](https://archive.ics.uci.edu/dataset/60/liver+disorders))
+- Real Estate Valuation ([UCI id=477](https://archive.ics.uci.edu/dataset/477/real+estate+valuation+data+set))
+- Diabetes ([from sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_diabetes.html#sklearn.datasets.load_diabetes))
+- Servo ([UCI id=87](https://archive.ics.uci.edu/dataset/87/servo))
+- Movies ([UCI id=424](https://archive.ics.uci.edu/dataset/424/csm+conventional+and+social+media+movies+dataset+2014+and+2015))
+
+Overall, LLMs perform well on these datasets as well. For example, GPT-4 ranks 6th on Liver Disorders. Please see [Appendix I](https://openreview.net/pdf?id=LzpaUxcNFK)) for additional details. 
+
+
 ## Results At A Glance
 The heatmap below is structured into 3 blocks: (1) LLMs (left), (2) Traditional Supervised Methods (middle), and (3) Unsupervised baseline (right). Each model had access to the same dataset, containing 50 (input, output) examples and was asked to predict the output corresponding to the same test sample. The performance is averaged across 100 random runs.
 
@@ -224,6 +239,7 @@ We found:
 ## Data
 
 The resulting data for all models can be found in `data/outputs`. Please see [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables.md) for examples on how to interact with it.
+
 
 ## How to
 
@@ -298,3 +314,16 @@ For example, to re-run GPT-4, just run `python -m src.experiments.regression_per
 
 The outputs of the above experiments are released and available at `data/outputs`. Please see [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables.md) for examples on how to interact with it and how to create the plots and tables used here.
 
+## Citation
+
+Please use the following bibtex:
+```
+@inproceedings{
+    vacareanu2024from,
+    title={From Words to Numbers: Your Large Language Model Is Secretly A Capable Regressor When Given In-Context Examples},
+    author={Robert Vacareanu and Vlad Andrei Negru and Vasile Suciu and Mihai Surdeanu},
+    booktitle={First Conference on Language Modeling},
+    year={2024},
+    url={https://openreview.net/forum?id=LzpaUxcNFK}
+}
+```
