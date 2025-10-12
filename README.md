@@ -244,10 +244,10 @@ The resulting data for all models can be found in `data/outputs`. Please see [ho
 ## How to
 
 ### How to add a new dataset?
-Please check [hot_to_add_dataset.md](./how_to_add_dataset.md).
+Please check [how_to_add_dataset.md](./how_to_add_dataset.md).
 
 ### How to add a new model?
-Please check [hot_to_add_model.md](./hot_to_add_model.md).
+Please check [how_to_add_model.md](./how_to_add_model.md).
 
 ### How to recreate some of the plots/tables
 Please check [how_to_create_plots_and_tables.md](./how_to_create_plots_and_tables).
